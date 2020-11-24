@@ -1,0 +1,13 @@
+G:\Univer\Теорвер\Labs\Labs1-4\obj\Debug\netcoreapp3.1\Labs1-4.csprojAssemblyReference.cache
+G:\Univer\Теорвер\Labs\Labs1-4\obj\Debug\netcoreapp3.1\Labs1-4.csproj.CoreCompileInputs.cache
+G:\Univer\Теорвер\Labs\Labs1-4\obj\Debug\netcoreapp3.1\Labs1-4.AssemblyInfoInputs.cache
+G:\Univer\Теорвер\Labs\Labs1-4\obj\Debug\netcoreapp3.1\Labs1-4.AssemblyInfo.cs
+G:\Univer\Теорвер\Labs\Labs1-4\bin\Debug\netcoreapp3.1\Labs1-4.exe
+G:\Univer\Теорвер\Labs\Labs1-4\bin\Debug\netcoreapp3.1\Labs1-4.deps.json
+G:\Univer\Теорвер\Labs\Labs1-4\bin\Debug\netcoreapp3.1\Labs1-4.runtimeconfig.json
+G:\Univer\Теорвер\Labs\Labs1-4\bin\Debug\netcoreapp3.1\Labs1-4.runtimeconfig.dev.json
+G:\Univer\Теорвер\Labs\Labs1-4\bin\Debug\netcoreapp3.1\Labs1-4.dll
+G:\Univer\Теорвер\Labs\Labs1-4\bin\Debug\netcoreapp3.1\Labs1-4.pdb
+G:\Univer\Теорвер\Labs\Labs1-4\obj\Debug\netcoreapp3.1\Labs1-4.dll
+G:\Univer\Теорвер\Labs\Labs1-4\obj\Debug\netcoreapp3.1\Labs1-4.pdb
+G:\Univer\Теорвер\Labs\Labs1-4\obj\Debug\netcoreapp3.1\Labs1-4.genruntimeconfig.cache
