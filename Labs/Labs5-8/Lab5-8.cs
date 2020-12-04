@@ -478,13 +478,13 @@ namespace Labs5_8
 
             _getKsi(sample, Distributions.LaplaceDistribution, t[0], t[1] / Math.Sqrt(2));
 
-            sample = GetSample(20, Distributions.LaplaceRandom, 0, 1);
+            sample = GetSample(20, Distributions.NormalRandom, 0, 1);
 
-            double[] t = _getMuSigma(sample);
+            _getMuSigma(sample);
 
             Console.WriteLine("Sensitivity Laplace n=20");
 
-            _getKsi(sample, Distributions.LaplaceDistribution, t[0], t[1] / Math.Sqrt(2));
+            _getKsi(sample, Distributions.NormalDistribution, 0, 1);
         }
 
         #endregion Lab7
