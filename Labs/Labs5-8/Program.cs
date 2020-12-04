@@ -8,9 +8,9 @@ namespace Labs5_8
         {
             //Lab5_8.Lab6();
 
-            //Lab5_8.Lab7();
+            Lab5_8.Lab7();
 
-            Lab5_8.Lab8();
+            //Lab5_8.Lab8();
         }
 
 

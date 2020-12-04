@@ -291,13 +291,15 @@ namespace Labs5_8
             double step = (rigth - left) / count;
             double val = left + step;
 
+            res[0] = left;
+
             for (int i = 0; i < count; i++)
             {
                 res[i + 1] = val;
                 val += step;
             }
 
-            res[0] = left;
+            
             //res[count + 1] = rigth;
 
             return res;
@@ -386,59 +388,20 @@ namespace Labs5_8
             Console.WriteLine("total sum " + sum);
         }
 
-        /*
-        static private void _maximalPlausibilityMethod(double[] sample)
+        static private void _getKsi(double[] sample, fDistr f, double fFirst, double fSecond, int count)
         {
-            Console.WriteLine("Maximal plausibitity method");
-
             double mu = _getAvg(sample);
-            double left = mu - 3;
-            double rigth = mu + 3;
+            double left = mu - 1.5;
+            double rigth = mu + 1.5;
 
             double[] borders = _getBorders(left, rigth, 4);
 
             Console.Write("Borders: " + left + " ");
 
             for (int i = 0; i < 4; i++)
-                Console.Write(borders[i] + " ");
+                Console.Write(borders[i + 1] + " ");
 
-            Console.WriteLine(rigth);
-
-            double[] p = new double[6];
-
-            p[0] = Distributions.NormalDistribution(left, 0, 1);
-
-            for (int i = 0; i < 4; i++)
-                p[i + 1] = Distributions.NormalDistribution(borders[i + 1], 0, 1) - Distributions.NormalDistribution(borders[i], 0, 1);
-
-            p[5] = 1 - Distributions.NormalDistribution(rigth, 0, 1);
-
-            double[] ni = _getDiapsCounts(sample, borders);
-
-            _getDiapasonsInfo(sample, ni);
-
-            _getNPsInfo(sample, p, 100);
-
-            _getNNPs(p, ni, 100);
-
-            _getNNPsSq(p, ni, 100);
-        }
-        */
-
-        static private void _getKsi(double[] sample, fDistr f, double fFirst, double fSecond)
-        {
-            double mu = _getAvg(sample);
-            double left = mu - 3;
-            double rigth = mu + 3;
-
-            double[] borders = _getBorders(left, rigth, 4);
-
-            Console.Write("Borders: " + left + " ");
-
-            for (int i = 0; i < 4; i++)
-                Console.Write(borders[i] + " ");
-
-            Console.WriteLine(rigth);
+            Console.WriteLine();
 
             double[] p = new double[6];
 
@@ -453,11 +416,11 @@ namespace Labs5_8
 
             _getDiapasonsInfo(sample, ni);
 
-            _getNPsInfo(sample, p, 20);
+            _getNPsInfo(sample, p, count);
 
-            _getNNPs(p, ni, 20);
+            _getNNPs(p, ni, count);
 
-            _getNNPsSq(p, ni, 20);
+            _getNNPsSq(p, ni, count);
         }
 
         static public void Lab7()
@@ -466,7 +429,7 @@ namespace Labs5_8
 
             _getMuSigma(sample);
 
-            _getKsi(sample, Distributions.NormalDistribution, 0, 1);
+            _getKsi(sample, Distributions.NormalDistribution, 0, 1, 100);
 
             //_maximalPlausibilityMethod(sample);
 
@@ -476,15 +439,15 @@ namespace Labs5_8
 
             Console.WriteLine("Sensitivity Laplace n=20");
 
-            _getKsi(sample, Distributions.LaplaceDistribution, t[0], t[1] / Math.Sqrt(2));
+            _getKsi(sample, Distributions.LaplaceDistribution, t[0], t[1] / Math.Sqrt(2), 20);
 
             sample = GetSample(20, Distributions.NormalRandom, 0, 1);
 
             _getMuSigma(sample);
 
-            Console.WriteLine("Sensitivity Laplace n=20");
+            Console.WriteLine("Sensitivity Normal n=20");
 
-            _getKsi(sample, Distributions.NormalDistribution, 0, 1);
+            _getKsi(sample, Distributions.NormalDistribution, 0, 1, 20);
         }
 
         #endregion Lab7
