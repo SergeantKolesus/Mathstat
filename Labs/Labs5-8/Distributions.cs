@@ -58,9 +58,9 @@ namespace Labs5_8
         static public double LaplaceDistribution(double x, double betta, double alpha)
         {
             if (x <= betta)
-                return alpha / 2 * Math.Exp(alpha * Math.Abs(x - betta));
+                return alpha / 2 * Math.Exp(alpha * (x - betta));
             else
-                return 1 - alpha / 2 * Math.Exp(-alpha * Math.Abs(x - betta)); ;
+                return 1 - alpha / 2 * Math.Exp(-alpha * (x - betta)); ;
         }
 
         #endregion Disdtributions

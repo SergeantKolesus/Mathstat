@@ -76,6 +76,32 @@ namespace Labs5_8
             return s / l;
         }
 
+        static private double _stdDevi(double[] sample)
+        {
+            double s;
+            double avg;
+            int l;
+
+            s = 0;
+            l = sample.Length;
+            avg = _getAvg(sample);
+
+            for (int i = 0; i < l; i++)
+            {
+                double t = sample[i];
+                s += t * t;
+            }
+
+            return Math.Sqrt(s / l);
+        }
+
+        static private double _getDispersion(double[] sample)
+        {
+            double avg = _getAvg(sample);
+
+            return _getSqAvg(sample) - avg * avg;
+        }
+
         #region Lab6
 
         static private double[] _getX(double min, double max, double step)
@@ -249,25 +275,6 @@ namespace Labs5_8
 
         #region Lab7
 
-        static private double _stdDevi(double[] sample)
-        {
-            double s;
-            double avg;
-            int l;
-
-            s = 0;
-            l = sample.Length;
-            avg = _getAvg(sample);
-
-            for (int i = 0; i < l; i++)
-            {
-                double t = sample[i];
-                s += t * t;
-            }
-
-            return Math.Sqrt(s / l);
-        }
-
         static private double[] _getMuSigma(double[] sample)
         {
             double mu = _getAvg(sample);
@@ -379,6 +386,7 @@ namespace Labs5_8
             Console.WriteLine("total sum " + sum);
         }
 
+        /*
         static private void _maximalPlausibilityMethod(double[] sample)
         {
             Console.WriteLine("Maximal plausibitity method");
@@ -415,11 +423,10 @@ namespace Labs5_8
 
             _getNNPsSq(p, ni, 100);
         }
+        */
 
-        static private void _sensitivity(double[] sample, fDistr f, double fFirst, double fSecond)
+        static private void _getKsi(double[] sample, fDistr f, double fFirst, double fSecond)
         {
-            Console.WriteLine("Sensitivity");
-
             double mu = _getAvg(sample);
             double left = mu - 3;
             double rigth = mu + 3;
@@ -459,15 +466,195 @@ namespace Labs5_8
 
             _getMuSigma(sample);
 
-            _maximalPlausibilityMethod(sample);
+            _getKsi(sample, Distributions.NormalDistribution, 0, 1);
+
+            //_maximalPlausibilityMethod(sample);
 
             sample = GetSample(20, Distributions.LaplaceRandom, 0, 1);
 
             double[] t = _getMuSigma(sample);
 
-            _sensitivity(sample, Distributions.LaplaceDistribution, t[0], t[1] / Math.Sqrt(2));
+            Console.WriteLine("Sensitivity Laplace n=20");
+
+            _getKsi(sample, Distributions.LaplaceDistribution, t[0], t[1] / Math.Sqrt(2));
+
+            sample = GetSample(20, Distributions.LaplaceRandom, 0, 1);
+
+            double[] t = _getMuSigma(sample);
+
+            Console.WriteLine("Sensitivity Laplace n=20");
+
+            _getKsi(sample, Distributions.LaplaceDistribution, t[0], t[1] / Math.Sqrt(2));
         }
 
         #endregion Lab7
+
+        #region Lab8
+
+        static private double[] _getM(double[] sample)
+        {
+            double avg;
+            double s;
+            double t;
+            double min;
+            double max;
+            double t1;
+            double t2; 
+            int l;
+            
+            avg = _getAvg(sample);
+            s = _getDispersion(sample);
+            l = sample.Length;
+
+            t = s * sample[0] / Math.Sqrt(l - 1);
+
+            min = avg - t;
+            max = avg + t;
+
+            for (int i = 1; i < l; i++)
+            {
+                t = s * sample[i] / Math.Sqrt(l - 1);
+
+                t1 = avg - t;
+                t2 = avg + t;
+
+                if (t1 < min)
+                    min = t1;
+
+                if (t2 > max)
+                    max = t2;
+            }
+
+            return new double[] { min, max};
+        }
+
+        static private double[] _getSimga(double[] sample)
+        {
+            double avg;
+            double s;
+            double t;
+            double min;
+            double max;
+            double t1;
+            double t2;
+            int l;
+
+            avg = _getAvg(sample);
+            s = _getDispersion(sample);
+            l = sample.Length;
+
+            t = s * Math.Sqrt((double)l / (l - 1.0));
+
+            min = avg - t;
+            max = avg + t;
+
+            for (int i = 1; i < l; i++)
+            {
+                t = s * sample[i] / Math.Sqrt(l - 1);
+
+                t1 = avg - t;
+                t2 = avg + t;
+
+                if (t1 < min)
+                    min = t1;
+
+                if (t2 > max)
+                    max = t2;
+            }
+
+            return new double[] { min, max };
+        }
+
+        static private double[] _getAssM(double[] sample)
+        {
+            double avg;
+            double s;
+            double t;
+            double min;
+            double max;
+            double t1;
+            double t2;
+            int l;
+
+            avg = _getAvg(sample);
+            s = _getDispersion(sample);
+            l = sample.Length;
+
+            t = s * sample[0] / Math.Sqrt(l - 1);
+
+            min = avg - t;
+            max = avg + t;
+
+            for (int i = 1; i < l; i++)
+            {
+                t = s * sample[i] / Math.Sqrt(l - 1);
+
+                t1 = avg - t;
+                t2 = avg + t;
+
+                if (t1 < min)
+                    min = t1;
+
+                if (t2 > max)
+                    max = t2;
+            }
+
+            return new double[] { min, max };
+        }
+
+        static private double[] _geAsstSimga(double[] sample)
+        {
+            double avg;
+            double s;
+            double t;
+            double min;
+            double max;
+            double t1;
+            double t2;
+            int l;
+
+            avg = _getAvg(sample);
+            s = _getDispersion(sample);
+            l = sample.Length;
+
+            t = s * Math.Sqrt((double)l / (l - 1.0));
+
+            min = avg - t;
+            max = avg + t;
+
+            for (int i = 1; i < l; i++)
+            {
+                t = s * sample[i] / Math.Sqrt(l - 1);
+
+                t1 = avg - t;
+                t2 = avg + t;
+
+                if (t1 < min)
+                    min = t1;
+
+                if (t2 > max)
+                    max = t2;
+            }
+
+            return new double[] { min, max };
+        }
+
+        static public void Lab8()
+        {
+            double alpha = 0.05;
+            double[] sample20 = GetSample(20, Distributions.NormalRandom);
+            double[] sample100 = GetSample(100, Distributions.NormalRandom);
+
+            double[] m = _getM(sample20);
+
+            Console.WriteLine(m[0] + " " + m[1]);
+
+            m = _getM(sample100);
+
+            Console.WriteLine(m[0] + " " + m[1]);
+
+        }
+
+        #endregion Lab8
     }
 }
