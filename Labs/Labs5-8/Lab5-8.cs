@@ -249,16 +249,223 @@ namespace Labs5_8
 
         #region Lab7
 
-        static private void _getMuAlpha()
+        static private double _stdDevi(double[] sample)
         {
-            double[] sample = GetSample(100, Distributions.NormalRandom, 0, 1);
+            double s;
+            double avg;
+            int l;
+
+            s = 0;
+            l = sample.Length;
+            avg = _getAvg(sample);
+
+            for (int i = 0; i < l; i++)
+            {
+                double t = sample[i];
+                s += t * t;
+            }
+
+            return Math.Sqrt(s / l);
+        }
+
+        static private double[] _getMuSigma(double[] sample)
+        {
+            double mu = _getAvg(sample);
+            double sigma = _stdDevi(sample);
+
+            Console.WriteLine("mu = " + mu + " and sigma = " + sigma);
+
+            return new double[] { mu, sigma };
+        }
+
+        static private double[] _getBorders(double left, double rigth, int count)
+        {
+            double[] res = new double[count + 1];
+            double step = (rigth - left) / count;
+            double val = left + step;
+
+            for (int i = 0; i < count; i++)
+            {
+                res[i + 1] = val;
+                val += step;
+            }
+
+            res[0] = left;
+            //res[count + 1] = rigth;
+
+            return res;
+        }
+
+        static private double[] _getDiapsCounts(double[] sample, double[] borders)
+        {
+            double[] res = new double[6];
+            int l = sample.Length;
+
+            for(int i = 0; i < l; i++)
+            {
+                if (sample[i] < borders[0])
+                    res[0]++;
+
+                if (sample[i] >= borders[4])
+                    res[5]++;
+
+                for (int j = 0; j < 4; j++)
+                    if ((sample[i] >= borders[j]) && (sample[i] < borders[j + 1]))
+                        res[j + 1]++;
+            }
+
+            return res;
+        }
+
+        static private void _getDiapasonsInfo(double[] sample, double[] ni)
+        {
+            int diapSum = 0;
+
+            for (int i = 0; i < 6; i++)
+            {
+                diapSum += (int)ni[i];
+                Console.WriteLine("int diap number " + i + "are " + ni[i] + " vals");
+            }
+
+            Console.WriteLine("total elements count " + diapSum);
+        }
+
+        static private void _getNPsInfo(double[] sample, double[] p, int n)
+        {
+            Console.WriteLine("p\tnp");
+
+            double sumP = 0;
+
+            for (int i = 0; i < 6; i++)
+            {
+                Console.WriteLine(p[i] + "\t" + (n * p[i]));
+
+                sumP += p[i];
+            }
+
+            Console.WriteLine("p sum = " + sumP);
+        }
+
+        static private void _getNNPs(double[] p, double[] ni, int n)
+        {
+            double sum = 0;
+
+            Console.WriteLine("Ni - N * Pi");
+
+            for(int i = 0; i < 6; i++)
+            {
+                double t = ni[i] - n * p[i];
+                sum += t;
+                Console.WriteLine(i + " : " + t);
+            }
+
+            Console.WriteLine("total sum " + sum);
+        }
+
+        static private void _getNNPsSq(double[] p, double[] ni, int n)
+        {
+            double sum = 0;
+
+            Console.WriteLine("(Ni - N * Pi)^2/(N * Pi)");
+
+            for (int i = 0; i < 6; i++)
+            {
+                double t1 = ni[i] - n * p[i];
+                double t = t1 * t1 / (n * p[i]);
+                sum += t;
+                Console.WriteLine(i + " : " + t);
+            }
+
+            Console.WriteLine("total sum " + sum);
+        }
+
+        static private void _maximalPlausibilityMethod(double[] sample)
+        {
+            Console.WriteLine("Maximal plausibitity method");
 
             double mu = _getAvg(sample);
+            double left = mu - 3;
+            double rigth = mu + 3;
+
+            double[] borders = _getBorders(left, rigth, 4);
+
+            Console.Write("Borders: " + left + " ");
+
+            for (int i = 0; i < 4; i++)
+                Console.Write(borders[i] + " ");
+
+            Console.WriteLine(rigth);
+
+            double[] p = new double[6];
+
+            p[0] = Distributions.NormalDistribution(left, 0, 1);
+
+            for (int i = 0; i < 4; i++)
+                p[i + 1] = Distributions.NormalDistribution(borders[i + 1], 0, 1) - Distributions.NormalDistribution(borders[i], 0, 1);
+
+            p[5] = 1 - Distributions.NormalDistribution(rigth, 0, 1);
+
+            double[] ni = _getDiapsCounts(sample, borders);
+
+            _getDiapasonsInfo(sample, ni);
+
+            _getNPsInfo(sample, p, 100);
+
+            _getNNPs(p, ni, 100);
+
+            _getNNPsSq(p, ni, 100);
+        }
+
+        static private void _sensitivity(double[] sample, fDistr f, double fFirst, double fSecond)
+        {
+            Console.WriteLine("Sensitivity");
+
+            double mu = _getAvg(sample);
+            double left = mu - 3;
+            double rigth = mu + 3;
+
+            double[] borders = _getBorders(left, rigth, 4);
+
+            Console.Write("Borders: " + left + " ");
+
+            for (int i = 0; i < 4; i++)
+                Console.Write(borders[i] + " ");
+
+            Console.WriteLine(rigth);
+
+            double[] p = new double[6];
+
+            p[0] = f(left, fFirst, fSecond);
+
+            for (int i = 0; i < 4; i++)
+                p[i + 1] = f(borders[i + 1], fFirst, fSecond) - f(borders[i], fFirst, fSecond);
+
+            p[5] = 1 - f(rigth, fFirst, fSecond);
+
+            double[] ni = _getDiapsCounts(sample, borders);
+
+            _getDiapasonsInfo(sample, ni);
+
+            _getNPsInfo(sample, p, 20);
+
+            _getNNPs(p, ni, 20);
+
+            _getNNPsSq(p, ni, 20);
         }
 
         static public void Lab7()
         {
-            _getMuAlpha();
+            double[] sample = GetSample(100, Distributions.NormalRandom, 0, 1);
+
+            _getMuSigma(sample);
+
+            _maximalPlausibilityMethod(sample);
+
+            sample = GetSample(20, Distributions.LaplaceRandom, 0, 1);
+
+            double[] t = _getMuSigma(sample);
+
+            _sensitivity(sample, Distributions.LaplaceDistribution, t[0], t[1] / Math.Sqrt(2));
         }
 
         #endregion Lab7
