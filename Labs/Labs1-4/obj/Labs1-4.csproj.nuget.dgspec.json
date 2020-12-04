@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Univer\\Теорвер\\Labs\\Labs1-4\\Labs1-4.csproj": {}
+    "G:\\Univer\\Теорвер\\Labs\\Labs\\Labs1-4\\Labs1-4.csproj": {}
   },
   "projects": {
-    "G:\\Univer\\Теорвер\\Labs\\Labs1-4\\Labs1-4.csproj": {
+    "G:\\Univer\\Теорвер\\Labs\\Labs\\Labs1-4\\Labs1-4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Univer\\Теорвер\\Labs\\Labs1-4\\Labs1-4.csproj",
+        "projectUniqueName": "G:\\Univer\\Теорвер\\Labs\\Labs\\Labs1-4\\Labs1-4.csproj",
         "projectName": "Labs1-4",
-        "projectPath": "G:\\Univer\\Теорвер\\Labs\\Labs1-4\\Labs1-4.csproj",
+        "projectPath": "G:\\Univer\\Теорвер\\Labs\\Labs\\Labs1-4\\Labs1-4.csproj",
         "packagesPath": "C:\\Users\\serge\\.nuget\\packages\\",
-        "outputPath": "G:\\Univer\\Теорвер\\Labs\\Labs1-4\\obj\\",
+        "outputPath": "G:\\Univer\\Теорвер\\Labs\\Labs\\Labs1-4\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

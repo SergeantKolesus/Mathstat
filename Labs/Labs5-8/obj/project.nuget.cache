@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eO12cwUDWQdc5y3tHYgBcISPfDBvLbXlwhj+MGoczgAqnA1lgbRsXO1iIM1T1gntA7uymzdlxk94peKqDzqpRw==",
+  "dgSpecHash": "b4eU4J/Lb8mYqBnK8257+m8TBbcEkujts7xa8jaa8FiKqdoX1T7SawqO0MYkiKEkFQnBiswBbCSGoMKkqwq5vA==",
   "success": true,
-  "projectFilePath": "G:\\Univer\\Теорвер\\Labs\\Labs5-8\\Labs5-8.csproj",
+  "projectFilePath": "G:\\Univer\\Теорвер\\Labs\\Labs\\Labs5-8\\Labs5-8.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\serge\\.nuget\\packages\\dynamiclanguageruntime\\1.3.0\\dynamiclanguageruntime.1.3.0.nupkg.sha512",
     "C:\\Users\\serge\\.nuget\\packages\\ironpython\\2.7.11\\ironpython.2.7.11.nupkg.sha512",

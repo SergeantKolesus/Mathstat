@@ -229,7 +229,7 @@ def PrintCombinedChars():
 
 #PrintChars()
 
-PrintCombinedChars()
+#PrintCombinedChars()
 
 #PrintEllipses()
 

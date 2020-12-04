@@ -6,8 +6,9 @@ namespace Labs5_8
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine(Distributions.v("", 0));
-            Distributions.NtdRandom();
+            //Lab5_8.Lab6();
+
+            Lab5_8.Lab7();
         }
 
 

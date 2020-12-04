@@ -853,11 +853,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Univer\\Теорвер\\Labs\\Labs5-8\\Labs5-8.csproj",
+      "projectUniqueName": "G:\\Univer\\Теорвер\\Labs\\Labs\\Labs5-8\\Labs5-8.csproj",
       "projectName": "Labs5-8",
-      "projectPath": "G:\\Univer\\Теорвер\\Labs\\Labs5-8\\Labs5-8.csproj",
+      "projectPath": "G:\\Univer\\Теорвер\\Labs\\Labs\\Labs5-8\\Labs5-8.csproj",
       "packagesPath": "C:\\Users\\serge\\.nuget\\packages\\",
-      "outputPath": "G:\\Univer\\Теорвер\\Labs\\Labs5-8\\obj\\",
+      "outputPath": "G:\\Univer\\Теорвер\\Labs\\Labs\\Labs5-8\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -875,6 +875,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -886,6 +887,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "IronPython": {
             "target": "Package",
@@ -911,7 +913,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
