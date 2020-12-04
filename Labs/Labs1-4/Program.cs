@@ -246,6 +246,8 @@ namespace Labs1_4
             _lab3();
 
             _lab4();
+
+            Lab1_4.PrepareKerDens(Distributions.UniformRandom, Distributions.UniformDistributionDensity, -Math.Sqrt(3), Math.Sqrt(3), 100, "1000UniformKerDens.xls");
         }
     }
 }

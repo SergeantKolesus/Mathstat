@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "eO12cwUDWQdc5y3tHYgBcISPfDBvLbXlwhj+MGoczgAqnA1lgbRsXO1iIM1T1gntA7uymzdlxk94peKqDzqpRw==",
+  "success": true,
+  "projectFilePath": "G:\\Univer\\Теорвер\\Labs\\Labs5-8\\Labs5-8.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\serge\\.nuget\\packages\\dynamiclanguageruntime\\1.3.0\\dynamiclanguageruntime.1.3.0.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\ironpython\\2.7.11\\ironpython.2.7.11.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\numpy\\3.7.1.25\\numpy.3.7.1.25.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\python.deployment\\1.2.0\\python.deployment.1.2.0.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\python.included\\3.7.3.13\\python.included.3.7.3.13.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\pythonnet_netstandard_py37_win\\2.5.1\\pythonnet_netstandard_py37_win.2.5.1.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\system.codedom\\4.7.0\\system.codedom.4.7.0.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.7.0\\system.security.cryptography.protecteddata.4.7.0.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
+    "C:\\Users\\serge\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

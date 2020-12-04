@@ -419,8 +419,8 @@ namespace Labs1_4
                 Q3 = sample[count * 3 / 4 + 1];
             }
 
-            X1 = Q1 - 3 / 2 * (Q3 - Q1);
-            X2 = Q3 + 3 / 2 * (Q3 - Q1);
+            X1 = Q1 - (double)3 / 2 * (Q3 - Q1);
+            X2 = Q3 + (double)3 / 2 * (Q3 - Q1);
 
             res = 0;
 
@@ -570,11 +570,10 @@ namespace Labs1_4
             return Math.Exp(-0.5 * u * u) / Math.Sqrt(2 * Math.PI);
         }
 
-        static public double KerDens(double[] sample, double x)
+        static public double KerDens(double[] sample, double x, double h = 1)
         {
 
             double sum = 0;
-            double h = 1;
 
             for(int i = 0; i < sample.Length; i++)
             {
