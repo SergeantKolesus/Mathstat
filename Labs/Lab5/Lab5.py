@@ -1,5 +1,8 @@
 import numpy as np
 import math
+import matplotlib.pyplot as pyplot
+from matplotlib.patches import Ellipse
+from matplotlib import transforms
 
 def Rang(x, row):
     r = 0
@@ -66,7 +69,7 @@ def SquaredCorrel(sample):
 
     return (n1 + n3 - n2 - n4) / len(sample)
 
-def Combined(size):
+def CombinedSample(size):
     return 0.9 * Sample(0.9, size) + 0.1 * np.random.multivariate_normal([0, 0], [[10, -0.9], [-0.9, 10]], size)
 
 def Average(row):
@@ -93,34 +96,116 @@ def Dispersion(row):
     t = Average(row)
     return SqAverage(row) - t * t
 
-ro = [0, 0.5, 0.9]
-n = [20, 60, 100]
+def Sum(row):
+    s = 0
 
-pir = []
-spe = []
-sqc = []
-print()
+    for i in row:
+        s += i
 
-# for k in range(1000):
-#     sample = Combined(60)
-#     #sample = Sample(0.5, 60)
-#     pir.append(Pirson(sample))
-#     spe.append(Spearmen(sample))
-#     sqc.append(SquaredCorrel(sample))
-#
-# print("Average: ", Average(pir), " ", SqAverage(pir), " ", Dispersion(pir))
-# print("Average: ", Average(spe), " ", SqAverage(spe), " ", Dispersion(spe))
-# print("Average: ", Average(sqc), " ", SqAverage(sqc), " ", Dispersion(sqc))
+    return s
+
+def DiffusionEllipse(sample, ax, sigmas):
+    pir = Pirson(sample)
+    w = math.sqrt(1 + pir)
+    h = math.sqrt(1 - pir)
+
+    ellipse = Ellipse((0, 0),
+                      width = w,
+                      height = h,
+                      facecolor = 'none',
+                      edgecolor = 'black')
+
+    xm = Sum(sample[:, 0]) / len(sample)
+    ym = Sum(sample[:, 1]) / len(sample)
+    sx = math.sqrt(sum(map(lambda a: (a - xm) ** 2, sample[:, 0])) / len(sample))
+    sy = math.sqrt(sum(map(lambda a: (a - ym) ** 2, sample[:, 1])) / len(sample))
+
+    tr = transforms.Affine2D() \
+        .rotate_deg(45) \
+        .scale(sx * sigmas, sy * sigmas) \
+        .translate(xm, ym)
+    ellipse.set_transform(tr + ax.transData)
+    ax.add_patch(ellipse)
+    ax.scatter(sample[:, 0], sample[:, 1], s=0.9)
+
+def PlotEllipse(sample):
+    fig, ax = pyplot.subplots()
+    DiffusionEllipse(sample, ax, 3)
+    pyplot.show()
+
+def WritePoints():
+    ro = [0, 0.5, 0.9]
+    n = [20, 60, 100]
+
+    for i in n:
+        for j in ro:
+            s = "2dNormal" + str(i) + "_" + str(j) + ".xls"
+
+            file = open(s, "w")
+
+            sample = Sample(j, i)
+
+            for p in sample:
+                sTemp = str(p[0]) + "\t" + str(p[1]) + "\n"
+                sTemp = sTemp.replace('.', ',')
+                file.write(sTemp)
+
+            file.close()
+
+def PrintEllipses():
+    ro = [0, 0.5, 0.9]
+    n = [20, 60, 100]
+
+    for i in n:
+        for j in ro:
+            sample = Sample(j, i)
+            print(j, " ", i)
+            PlotEllipse(sample)
+
+def PrintChars():
+    ro = [0, 0.5, 0.9]
+    n = [20, 60, 100]
+
+    for i in ro:
+        for j in n:
+            pir = []
+            spe = []
+            sqc = []
+
+            for k in range(1000):
+                sample = Sample(i, j)
+                pir.append(Pirson(sample))
+                spe.append(Spearmen(sample))
+                sqc.append(SquaredCorrel(sample))
+
+            avgPir = Average(pir)
+            avgSpe = Average(spe)
+            avgSqc = Average(sqc)
+
+            sqAvgPir = SqAverage(pir)
+            sqAvgSpe = SqAverage(spe)
+            sqAvgSqc = SqAverage(sqc)
+
+            dispPir = Dispersion(pir)
+            dispSpe = Dispersion(spe)
+            dispSqc = Dispersion(sqc)
+
+            print("ro = ", i, " ; n = ", j)
+            print("Average: ", avgPir, " ", avgSpe, " ", avgSqc)
+            print("Squared average: ", sqAvgPir, " ", sqAvgSpe, " ", sqAvgSqc)
+            print("Dispersion: ", dispPir, " ", dispSpe, " ", dispSqc)
 
 
-for i in ro:
-    for j in n:
+def PrintCombinedChars():
+    n = [20, 60, 100]
+
+    for i in n:
         pir = []
         spe = []
         sqc = []
 
         for k in range(1000):
-            sample = Sample(i, j)
+            sample = CombinedSample(i)
             pir.append(Pirson(sample))
             spe.append(Spearmen(sample))
             sqc.append(SquaredCorrel(sample))
@@ -137,7 +222,15 @@ for i in ro:
         dispSpe = Dispersion(spe)
         dispSqc = Dispersion(sqc)
 
-        print("ro = ", i, " ; n = ", j)
+        print("n = ", i)
         print("Average: ", avgPir, " ", avgSpe, " ", avgSqc)
         print("Squared average: ", sqAvgPir, " ", sqAvgSpe, " ", sqAvgSqc)
         print("Dispersion: ", dispPir, " ", dispSpe, " ", dispSqc)
+
+#PrintChars()
+
+PrintCombinedChars()
+
+#PrintEllipses()
+
+#WritePoints()
